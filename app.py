@@ -32,6 +32,16 @@ def insert_nilai(nama, bio, fis, ing, prediksi):
     conn.commit()
     conn.close()
 
+
+
+def delete_nilai(id_siswa):
+    conn = sqlite3.connect(DB_FILE)
+    cur = conn.cursor()
+    cur.execute('DELETE FROM nilai_siswa WHERE id=?', (id_siswa,))
+    conn.commit()
+    conn.close()
+
+
 def fetch_all():
     conn = sqlite3.connect(DB_FILE)
     cur = conn.cursor()
