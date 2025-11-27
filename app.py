@@ -131,7 +131,7 @@ class NilaiApp:
 
         self.btn_submit = ttk.Button(btn_frame, text='Submit', command=self.on_submit)
         self.btn_submit.grid(row=0, column=0, padx=(0, 8))
-        
+
         self.btn_update = ttk.Button(btn_frame, text='Update', command=self.on_update)
         self.btn_update.grid(row=0, column=1, padx=(0, 8))
 
@@ -139,7 +139,7 @@ class NilaiApp:
         self.btn_delete.grid(row=0, column=2, padx=(0, 8))
 
         self.btn_clear = ttk.Button(btn_frame, text='Clear', command=self.clear_form)
-        self.btn_clear.grid(row=0, column=1, padx=(0, 8))
+        self.btn_clear.grid(row=0, column=3, padx=(0, 8))
 
         columns = ('id', 'nama', 'biologi', 'fisika', 'inggris', 'prediksi')
         self.tree = ttk.Treeview(frm_right, columns=columns, show='headings')
