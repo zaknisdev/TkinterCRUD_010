@@ -132,10 +132,10 @@ class NilaiApp:
         self.btn_submit = ttk.Button(btn_frame, text='Submit', command=self.on_submit)
         self.btn_submit.grid(row=0, column=0, padx=(0, 8))
 
-        self.btn_update = ttk.Button(btn_frame, text='Update')
+        self.btn_update = ttk.Button(btn_frame, text='Update', command=self.on_update)
         self.btn_update.grid(row=0, column=1, padx=(0, 8))
 
-        self.btn_delete = ttk.Button(btn_frame, text='Delete')
+        self.btn_delete = ttk.Button(btn_frame, text='Delete', command=self.on_delete)
         self.btn_delete.grid(row=0, column=2, padx=(0, 8))
 
         self.btn_clear = ttk.Button(btn_frame, text='Clear', command=self.clear_form)
@@ -207,6 +207,18 @@ class NilaiApp:
 
         self.clear_form()
         self.load_table()
+
+    def on_delete(self):
+        if self.selected_record_id is None:
+            messagebox.showwarning('Peringatan', 'Pilih data dari tabel untuk dihapus.')
+            return
+
+        confirm = messagebox.askyesno('Konfirmasi', 'Yakin ingin menghapus data ini?')
+        if confirm:
+            delete_nilai(self.selected_record_id)
+            messagebox.showinfo('Sukses', 'Data berhasil dihapus!')
+            self.clear_form()
+            self.load_table()
 
     def load_table(self):
         for i in self.tree.get_children():
