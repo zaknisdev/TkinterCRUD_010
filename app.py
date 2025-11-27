@@ -83,6 +83,8 @@ class NilaiApp:
         root.geometry('900x520')
         root.minsize(800, 480)
 
+        self.selected_record_id = None
+
         style = ttk.Style()
         try:
             style.theme_use('clam')
@@ -162,6 +164,8 @@ class NilaiApp:
         vsb.grid(row=0, column=1, sticky='ns')
         hsb.grid(row=1, column=0, sticky='ew')
 
+        self.tree.bind('<<TreeviewSelect>>', self.on_select)
+
         frm_right.grid_rowconfigure(0, weight=1)
         frm_right.grid_columnconfigure(0, weight=1)
 
@@ -208,6 +212,27 @@ class NilaiApp:
         self.clear_form()
         self.load_table()
     
+    def on_select(self, event):
+        
+        selected_item = self.tree.selection()
+        if not selected_item:
+            return
+        item_values = self.tree.item(selected_item[0], 'values')
+        
+        self.selected_record_id = item_values[0]
+
+        self.entry_nama.delete(0, tk.END)
+        self.entry_nama.insert(0, item_values[1])
+        
+        self.entry_bio.delete(0, tk.END)
+        self.entry_bio.insert(0, item_values[2])
+        
+        self.entry_fis.delete(0, tk.END)
+        self.entry_fis.insert(0, item_values[3])
+        
+        self.entry_ing.delete(0, tk.END)
+        self.entry_ing.insert(0, item_values[4])
+    
     def on_update(self):
         if self.selected_record_id is None:
             messagebox.showwarning('Peringatan', 'Pilih data dari tabel untuk diupdate.')
@@ -241,6 +266,8 @@ class NilaiApp:
             messagebox.showinfo('Sukses', 'Data berhasil dihapus!')
             self.clear_form()
             self.load_table()
+    
+    
 
     def load_table(self):
         for i in self.tree.get_children():
