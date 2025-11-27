@@ -77,7 +77,7 @@ def predict_fakultas(biologi, fisika, inggris):
 
 
 class NilaiApp:
-    def _init_(self, root):
+    def __init__(self, root):
         self.root = root
         root.title('Input Nilai Siswa - SQLite')
         root.geometry('900x520')
@@ -132,10 +132,10 @@ class NilaiApp:
         self.btn_submit = ttk.Button(btn_frame, text='Submit', command=self.on_submit)
         self.btn_submit.grid(row=0, column=0, padx=(0, 8))
 
-        self.btn_update = ttk.Button(btn_frame, text='Update', command=self.on_update)
+        self.btn_update = ttk.Button(btn_frame, text='Update')
         self.btn_update.grid(row=0, column=1, padx=(0, 8))
 
-        self.btn_delete = ttk.Button(btn_frame, text='Delete', command=self.on_delete)
+        self.btn_delete = ttk.Button(btn_frame, text='Delete')
         self.btn_delete.grid(row=0, column=2, padx=(0, 8))
 
         self.btn_clear = ttk.Button(btn_frame, text='Clear', command=self.clear_form)
@@ -249,7 +249,7 @@ class NilaiApp:
 
         messagebox.showinfo('Export CSV', f'Data diekspor ke {filename}')
 
-if __name__ == '_main_':
+if __name__ == '__main__':
     init_db()
     root = tk.Tk()
     app = NilaiApp(root)
